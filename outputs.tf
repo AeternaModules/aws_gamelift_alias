@@ -20,7 +20,7 @@ output "gamelift_aliases_region" {
 }
 output "gamelift_aliases_routing_strategy" {
   description = "Map of routing_strategy values across all gamelift_aliases, keyed the same as var.gamelift_aliases"
-  value       = { for k, v in aws_gamelift_alias.gamelift_aliases : k => v.routing_strategy if v.routing_strategy != null && length(v.routing_strategy) > 0 }
+  value       = { for k, v in aws_gamelift_alias.gamelift_aliases : k => one(v.routing_strategy) if v.routing_strategy != null && length(v.routing_strategy) > 0 }
 }
 output "gamelift_aliases_tags" {
   description = "Map of tags values across all gamelift_aliases, keyed the same as var.gamelift_aliases"
